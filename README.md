@@ -1,36 +1,36 @@
 # PostgreSQL client and ORM for Golang
 
 [![Build Status](https://travis-ci.org/go-pg/pg.svg?branch=master)](https://travis-ci.org/go-pg/pg)
-[![GoDoc](https://godoc.org/github.com/go-pg/pg?status.svg)](https://pkg.go.dev/github.com/go-pg/pg/v10?tab=doc)
+[![GoDoc](https://godoc.org/github.com/nibeh/pg?status.svg)](https://pkg.go.dev/github.com/nibeh/pg/v10?tab=doc)
 
 ## Features
 
 - Basic types: integers, floats, string, bool, time.Time, net.IP, net.IPNet.
-- sql.NullBool, sql.NullString, sql.NullInt64, sql.NullFloat64 and [pg.NullTime](https://pkg.go.dev/github.com/go-pg/pg/v10?tab=doc#NullTime).
+- sql.NullBool, sql.NullString, sql.NullInt64, sql.NullFloat64 and [pg.NullTime](https://pkg.go.dev/github.com/nibeh/pg/v10?tab=doc#NullTime).
 - [sql.Scanner](http://golang.org/pkg/database/sql/#Scanner) and [sql/driver.Valuer](http://golang.org/pkg/database/sql/driver/#Valuer) interfaces.
 - Structs, maps and arrays are marshalled as JSON by default.
-- PostgreSQL multidimensional Arrays using [array tag](https://godoc.org/github.com/go-pg/pg#example-DB-Model-PostgresArrayStructTag) and [Array wrapper](https://godoc.org/github.com/go-pg/pg#example-Array).
-- Hstore using [hstore tag](https://godoc.org/github.com/go-pg/pg#example-DB-Model-HstoreStructTag) and [Hstore wrapper](https://godoc.org/github.com/go-pg/pg#example-Hstore).
-- [Composite types](https://godoc.org/github.com/go-pg/pg#example-DB-Model-CompositeType).
+- PostgreSQL multidimensional Arrays using [array tag](https://godoc.org/github.com/nibeh/pg#example-DB-Model-PostgresArrayStructTag) and [Array wrapper](https://godoc.org/github.com/nibeh/pg#example-Array).
+- Hstore using [hstore tag](https://godoc.org/github.com/nibeh/pg#example-DB-Model-HstoreStructTag) and [Hstore wrapper](https://godoc.org/github.com/nibeh/pg#example-Hstore).
+- [Composite types](https://godoc.org/github.com/nibeh/pg#example-DB-Model-CompositeType).
 - All struct fields are nullable by default and zero values (empty string, 0, zero time, empty map or slice, nil ptr) are marshalled as SQL `NULL`. `pg:",notnull"` is used to add SQL `NOT NULL` constraint and `pg:",use_zero"` to allow Go zero values.
-- [Transactions](https://pkg.go.dev/github.com/go-pg/pg/v10?tab=doc#example-DB-Begin).
-- [Prepared statements](https://pkg.go.dev/github.com/go-pg/pg/v10?tab=doc#example-DB-Prepare).
-- [Notifications](https://pkg.go.dev/github.com/go-pg/pg/v10?tab=doc#example-Listener) using `LISTEN` and `NOTIFY`.
-- [Copying data](https://pkg.go.dev/github.com/go-pg/pg/v10?tab=doc#example-DB-CopyFrom) using `COPY FROM` and `COPY TO`.
-- [Timeouts](https://pkg.go.dev/github.com/go-pg/pg/v10?tab=doc#Options) and canceling queries using context.Context.
+- [Transactions](https://pkg.go.dev/github.com/nibeh/pg/v10?tab=doc#example-DB-Begin).
+- [Prepared statements](https://pkg.go.dev/github.com/nibeh/pg/v10?tab=doc#example-DB-Prepare).
+- [Notifications](https://pkg.go.dev/github.com/nibeh/pg/v10?tab=doc#example-Listener) using `LISTEN` and `NOTIFY`.
+- [Copying data](https://pkg.go.dev/github.com/nibeh/pg/v10?tab=doc#example-DB-CopyFrom) using `COPY FROM` and `COPY TO`.
+- [Timeouts](https://pkg.go.dev/github.com/nibeh/pg/v10?tab=doc#Options) and canceling queries using context.Context.
 - Automatic connection pooling with [circuit breaker](https://en.wikipedia.org/wiki/Circuit_breaker_design_pattern) support.
-- Queries retry on network errors.
-- Working with models using [ORM](https://godoc.org/github.com/go-pg/pg#example-DB-Model) and [SQL](https://godoc.org/github.com/go-pg/pg#example-DB-Query).
-- Scanning variables using [ORM](https://godoc.org/github.com/go-pg/pg#example-DB-Select-SomeColumnsIntoVars) and [SQL](https://godoc.org/github.com/go-pg/pg#example-Scan).
-- [SelectOrInsert](https://godoc.org/github.com/go-pg/pg#example-DB-Insert-SelectOrInsert) using on-conflict.
-- [INSERT ... ON CONFLICT DO UPDATE](https://godoc.org/github.com/go-pg/pg#example-DB-Insert-OnConflictDoUpdate) using ORM.
-- Bulk/batch [inserts](https://godoc.org/github.com/go-pg/pg#example-DB-Insert-BulkInsert), [updates](https://godoc.org/github.com/go-pg/pg#example-DB-Update-BulkUpdate), and [deletes](https://godoc.org/github.com/go-pg/pg#example-DB-Delete-BulkDelete).
-- Common table expressions using [WITH](https://godoc.org/github.com/go-pg/pg#example-DB-Select-With) and [WrapWith](https://godoc.org/github.com/go-pg/pg#example-DB-Select-WrapWith).
-- [CountEstimate](https://godoc.org/github.com/go-pg/pg#example-DB-Model-CountEstimate) using `EXPLAIN` to get [estimated number of matching rows](https://wiki.postgresql.org/wiki/Count_estimate).
-- ORM supports [has one](https://godoc.org/github.com/go-pg/pg#example-DB-Model-HasOne), [belongs to](https://godoc.org/github.com/go-pg/pg#example-DB-Model-BelongsTo), [has many](https://godoc.org/github.com/go-pg/pg#example-DB-Model-HasMany), and [many to many](https://godoc.org/github.com/go-pg/pg#example-DB-Model-ManyToMany) with composite/multi-column primary keys.
-- [Soft deletes](https://godoc.org/github.com/go-pg/pg#example-DB-Model-SoftDelete).
-- [Creating tables from structs](https://godoc.org/github.com/go-pg/pg#example-DB-CreateTable).
-- [ForEach](https://godoc.org/github.com/go-pg/pg#example-DB-Model-ForEach) that calls a function for each row returned by the query without loading all rows into the memory.
+- Queries retries on network errors.
+- Working with models using [ORM](https://godoc.org/github.com/nibeh/pg#example-DB-Model) and [SQL](https://godoc.org/github.com/nibeh/pg#example-DB-Query).
+- Scanning variables using [ORM](https://godoc.org/github.com/nibeh/pg#example-DB-Select-SomeColumnsIntoVars) and [SQL](https://godoc.org/github.com/nibeh/pg#example-Scan).
+- [SelectOrInsert](https://godoc.org/github.com/nibeh/pg#example-DB-Insert-SelectOrInsert) using on-conflict.
+- [INSERT ... ON CONFLICT DO UPDATE](https://godoc.org/github.com/nibeh/pg#example-DB-Insert-OnConflictDoUpdate) using ORM.
+- Bulk/batch [inserts](https://godoc.org/github.com/nibeh/pg#example-DB-Insert-BulkInsert), [updates](https://godoc.org/github.com/nibeh/pg#example-DB-Update-BulkUpdate), and [deletes](https://godoc.org/github.com/nibeh/pg#example-DB-Delete-BulkDelete).
+- Common table expressions using [WITH](https://godoc.org/github.com/nibeh/pg#example-DB-Select-With) and [WrapWith](https://godoc.org/github.com/nibeh/pg#example-DB-Select-WrapWith).
+- [CountEstimate](https://godoc.org/github.com/nibeh/pg#example-DB-Model-CountEstimate) using `EXPLAIN` to get [estimated number of matching rows](https://wiki.postgresql.org/wiki/Count_estimate).
+- ORM supports [has one](https://godoc.org/github.com/nibeh/pg#example-DB-Model-HasOne), [belongs to](https://godoc.org/github.com/nibeh/pg#example-DB-Model-BelongsTo), [has many](https://godoc.org/github.com/nibeh/pg#example-DB-Model-HasMany), and [many to many](https://godoc.org/github.com/nibeh/pg#example-DB-Model-ManyToMany) with composite/multi-column primary keys.
+- [Soft deletes](https://godoc.org/github.com/nibeh/pg#example-DB-Model-SoftDelete).
+- [Creating tables from structs](https://godoc.org/github.com/nibeh/pg#example-DB-CreateTable).
+- [ForEach](https://godoc.org/github.com/nibeh/pg#example-DB-Model-ForEach) that calls a function for each row returned by the query without loading all rows into the memory.
 - Works with PgBouncer in transaction pooling mode.
 
 ## Ecosystem
@@ -46,12 +46,12 @@ go-pg requires a Go version with [Modules](https://github.com/golang/go/wiki/Mod
 
 ```shell
 go mod init github.com/my/repo
-go get github.com/go-pg/pg/v10
+go get github.com/nibeh/pg/v10
 ```
 
-- [Wiki](https://github.com/go-pg/pg/wiki)
-- [API docs](https://pkg.go.dev/github.com/go-pg/pg/v10?tab=doc)
-- [Examples](https://pkg.go.dev/github.com/go-pg/pg/v10?tab=doc#pkg-examples)
+- [Wiki](https://github.com/nibeh/pg/wiki)
+- [API docs](https://pkg.go.dev/github.com/nibeh/pg/v10?tab=doc)
+- [Examples](https://pkg.go.dev/github.com/nibeh/pg/v10?tab=doc#pkg-examples)
 
 ## Look & Feel
 
@@ -61,8 +61,8 @@ package pg_test
 import (
     "fmt"
 
-    "github.com/go-pg/pg/v10"
-    "github.com/go-pg/pg/v10/orm"
+    "github.com/nibeh/pg/v10"
+    "github.com/nibeh/pg/v10/orm"
 )
 
 type User struct {
