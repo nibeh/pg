@@ -4,9 +4,9 @@ import (
 	"context"
 	"errors"
 
-	"github.com/go-pg/pg/v10/internal"
-	"github.com/go-pg/pg/v10/internal/pool"
-	"github.com/go-pg/pg/v10/orm"
+	"github.com/nibeh/pg/v10/internal"
+	"github.com/nibeh/pg/v10/internal/pool"
+	"github.com/nibeh/pg/v10/orm"
 )
 
 var errStmtClosed = errors.New("pg: statement is closed")

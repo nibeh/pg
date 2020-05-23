@@ -8,9 +8,9 @@ import (
 	"go.opentelemetry.io/otel/api/kv"
 	"go.opentelemetry.io/otel/api/trace"
 
-	"github.com/go-pg/pg/v10/internal"
-	"github.com/go-pg/pg/v10/internal/pool"
-	"github.com/go-pg/pg/v10/orm"
+	"github.com/nibeh/pg/v10/internal"
+	"github.com/nibeh/pg/v10/internal/pool"
+	"github.com/nibeh/pg/v10/orm"
 )
 
 type baseDB struct {

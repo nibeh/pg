@@ -5,8 +5,8 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/go-pg/pg/v10/internal"
-	"github.com/go-pg/pg/v10/types"
+	"github.com/nibeh/pg/v10/internal"
+	"github.com/nibeh/pg/v10/types"
 )
 
 type sliceTableModel struct {
