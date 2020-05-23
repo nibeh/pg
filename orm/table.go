@@ -15,10 +15,10 @@ import (
 	"github.com/jinzhu/inflection"
 	"github.com/vmihailenco/tagparser"
 
+	"github.com/go-pg/zerochecker"
 	"github.com/nibeh/pg/v10/internal"
 	"github.com/nibeh/pg/v10/pgjson"
 	"github.com/nibeh/pg/v10/types"
-	"github.com/go-pg/zerochecker"
 )
 
 const (

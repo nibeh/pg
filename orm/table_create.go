@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"github.com/nibeh/pg/v10/types"
+	"github.com/vmihailenco/tagparser"
 )
 
 type CreateTableOptions struct {
@@ -152,21 +153,24 @@ func pkSQLType(s string) string {
 	return s
 }
 
+// TODO move reflect dependency to previous parser
 func appendInherits(b []byte, typ reflect.Type) []byte {
 	var numInheritances int
 	for i := 0; i < typ.NumField(); i++ {
 		f := typ.Field(i)
 
 		if f.Anonymous {
+			sqlTag := f.Tag.Get("sql")
+			if sqlTag == "-" {
+				continue
+			}
+
 			fieldType := indirectType(f.Type)
 			if fieldType.Kind() != reflect.Struct {
 				continue
 			}
 
-			pgTag := tag.Parse(f.Tag.Get("pg"))
-			if pgTag == "-" {
-				continue
-			}
+			pgTag := tagparser.Parse(f.Tag.Get("pg"))
 			if _, inherits := pgTag.Options["inherits"]; inherits {
 				if numInheritances == 0 {
 					b = append(b, " INHERITS ("...)

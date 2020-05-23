@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/nibeh/pg/v10/types"
 	"github.com/go-pg/zerochecker"
+	"github.com/nibeh/pg/v10/types"
 )
 
 const (
@@ -15,6 +15,7 @@ const (
 	UseZeroFlag
 	UniqueFlag
 	ArrayFlag
+	InheritsFlag
 )
 
 type Field struct {
