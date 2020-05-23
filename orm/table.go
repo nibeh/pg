@@ -15,9 +15,9 @@ import (
 	"github.com/jinzhu/inflection"
 	"github.com/vmihailenco/tagparser"
 
-	"github.com/go-pg/pg/v9/internal"
-	"github.com/go-pg/pg/v9/pgjson"
-	"github.com/go-pg/pg/v9/types"
+	"github.com/nibeh/pg/v9/internal"
+	"github.com/nibeh/pg/v9/pgjson"
+	"github.com/nibeh/pg/v9/types"
 	"github.com/go-pg/zerochecker"
 )
 
@@ -133,7 +133,7 @@ func newTable(typ reflect.Type) *Table {
 	for _, hook := range oldHooks {
 		if typ.Implements(hook) {
 			internal.Logger.Printf("DEPRECATED: model hooks on %s must be updated - "+
-				"see https://github.com/go-pg/pg/wiki/Model-Hooks", t.TypeName)
+				"see https://github.com/nibeh/pg/wiki/Model-Hooks", t.TypeName)
 		}
 	}
 

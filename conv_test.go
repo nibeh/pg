@@ -10,10 +10,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/go-pg/pg/v9"
-	"github.com/go-pg/pg/v9/orm"
-	"github.com/go-pg/pg/v9/pgjson"
-	"github.com/go-pg/pg/v9/types"
+	"github.com/nibeh/pg/v9"
+	"github.com/nibeh/pg/v9/orm"
+	"github.com/nibeh/pg/v9/pgjson"
+	"github.com/nibeh/pg/v9/types"
 )
 
 type JSONMap map[string]interface{}

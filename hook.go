@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/go-pg/pg/v9/orm"
+	"github.com/nibeh/pg/v9/orm"
 )
 
 type BeforeScanHook = orm.BeforeScanHook

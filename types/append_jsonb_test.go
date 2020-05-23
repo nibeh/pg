@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/go-pg/pg/v9/pgjson"
-	"github.com/go-pg/pg/v9/types"
+	"github.com/nibeh/pg/v9/pgjson"
+	"github.com/nibeh/pg/v9/types"
 )
 
 var jsonbTests = []struct {
