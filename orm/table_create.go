@@ -1,6 +1,7 @@
 package orm
 
 import (
+	"reflect"
 	"sort"
 	"strconv"
 
@@ -113,6 +114,8 @@ func (q *createTableQuery) AppendQuery(fmter QueryFormatter, b []byte) (_ []byte
 		b = append(b, table.PartitionBy...)
 	}
 
+	b = appendInherits(b, table.Type)
+
 	if table.Tablespace != "" {
 		b = q.appendTablespace(b, table.Tablespace)
 	}
@@ -147,6 +150,43 @@ func pkSQLType(s string) string {
 		return pgTypeBigserial
 	}
 	return s
+}
+
+func appendInherits(b []byte, typ reflect.Type) []byte {
+	var numInheritances int
+	for i := 0; i < typ.NumField(); i++ {
+		f := typ.Field(i)
+
+		if f.Anonymous {
+			fieldType := indirectType(f.Type)
+			if fieldType.Kind() != reflect.Struct {
+				continue
+			}
+
+			pgTag := tag.Parse(f.Tag.Get("pg"))
+			if pgTag == "-" {
+				continue
+			}
+			if _, inherits := pgTag.Options["inherits"]; inherits {
+				if numInheritances == 0 {
+					b = append(b, " INHERITS ("...)
+				} else {
+					b = append(b, ", "...)
+				}
+
+				parentTable := _tables.get(fieldType, true)
+				b = append(b, parentTable.Name...)
+
+				numInheritances++
+			}
+		}
+	}
+
+	if numInheritances > 0 {
+		b = append(b, ")"...)
+	}
+
+	return b
 }
 
 func appendPKConstraint(b []byte, pks []*Field) []byte {
