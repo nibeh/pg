@@ -179,7 +179,7 @@ func appendInherits(b []byte, typ reflect.Type) []byte {
 				}
 
 				parentTable := _tables.get(fieldType, true)
-				b = append(b, parentTable.Name...)
+				b = append(b, []byte(parentTable.FullName)...)
 
 				numInheritances++
 			}
